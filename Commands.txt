@@ -1,0 +1,58 @@
+1. 
+SELECT *from Customer;
+2. 
+SELECT FirstName,LastName from Customer;
+3. 
+SELECT  Name,Price from ManufacturedMedicine;
+4. 
+UPDATE Customer SET [Phone]=5145678943 WHERE[FirstName]='Ivan';
+5. 
+UPDATE Customer SET [DOB]='6/27/2001' Where[DOB] like '19%';
+6.
+SELECT MIN(Quantity)AS Minimum
+FROM Storage;
+7.
+SELECT MAX(Quantity) AS Maximum
+From Storage; 
+8.
+SELECT SUM (Quantity)
+FROM Storage;
+9.
+SELECT AVG (Quantity)
+FROM Storage;
+10.
+SELECT COUNT(Name)
+FROM ManufacturedMedicine;
+11.
+SELECT COUNT (Name)
+ FROM ReadyMedicine;
+12.
+SELECT * FROM Customer
+WHERE LastName LIKE 'R%'; 
+13.
+SELECT * FROM Ingredient
+WHERE Cost BETWEEN 10 AND 20;
+14.
+SELECT Name FROM ManufacturedMedicine
+UNION
+SELECT Name FROM ReadyMedicine
+ORDER BY Name;
+
+15.
+Select* from Customer
+
+Begin Transaction
+go
+begin
+INSERT INTO Customer VALUES( 127,'Olga', 'Titova', '07/06/2001', '9 Red', 5146578432);
+ END
+Rollback;
+Commit;
+
+
+Create LOGIN MILA
+WITH PASSWORD='1203Lunara'
+
+Create USER MILA
+
+Drop LOGIN MILA

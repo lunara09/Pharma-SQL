@@ -1,0 +1,30 @@
+                                            Database of Pharmacy
+
+
+    In my project, I decided to create a database of pharmacy. In order to review the main functions of the pharmacy. 
+   Pharmacy sells medicines and makes them according to prescriptions. Medications can be of different types:
+                         1. Ready medicines: pills, ointments, tinctures .
+                         2. Manufactured by pharmacy: mixes, ointments, solutions, tinctures, powders.
+   Different medicines are made from different ingredients. Having different technology methods of preparation.
+  In the pharmacy there is a directory of technologies for the preparation of various drugs and the method of preparation. The pharmacy has a storage where the critical rate is set for each drug and ingredient. If the medicine has a low critical rate, pharmacy make up an order.
+  To buy or make a medicine, the patient must bring a prescription from the doctor. The prescription should contain first name, last name, signature and seal of the doctor, also patient's first and last name, date of birth and diagnosis. Prescription details must have name of medicine, method of use and dose. 
+   The patient gives the prescription to the pharmacy employee, he takes the order and looks at the availability of the ordered drug or components in the storage. 
+  
+                        In my pharmacy database I  created 10 entities:   
+
+  1.Ready medicine (Medicine id,StorageID,PrescriptionID, Name, Form, Price)
+  2.Manufactured medicine, (Manufactured medicine id,StorageID,PrescriptionDetailID, Name , Form, Price)
+  3.Ingredients (Ingredient ID,StorageID, Name of ingredient, Form, Price) 
+  4.Technology (Technology ID, ManufacturedMedicineID, Preparation method , Preparation time)
+  5.Customers (Customer id, Last name,Ffirst name, Date of birth, Address,Phone)
+  6.Orders (Order id, prescription id, reception date, production date, date issuance, cost, status) 
+  7.Composition (Composition id, ManufacturedMedicationID, Ingredient id, Quantity)
+  8.Prescription details (Prescription details id, medication id, name of medication, method of use, dose) 
+  9.Prescription (Prescription id, customer id, doctor, diagnosis)
+ 10.Storage  (StorageID, quantity, critical rate)
+The doctor writes a prescription for the patient (customer). He comes to the pharmacy, acquires ready-made medicines or places an order for the manufacture medicines that require ingredients and special technologies.
+
+
+
+Liudmila Plita 
+Student # 1896003

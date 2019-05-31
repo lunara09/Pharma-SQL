@@ -1,0 +1,176 @@
+create database Pharmacy
+
+use Pharmacy
+Create table Customer
+(
+CustomerID int Primary Key,
+FirstName varchar (25),
+LastName varchar(25),
+DOB date,
+Address varchar(50),
+Phone varchar(15)
+);
+Create Table Prescription
+(
+PrescriptionID int Primary Key,
+CustomerID  int References Customer (CustomerID) ,
+Doctor varchar(50),
+Diagnosis varchar(50)
+);
+Create Table Orders
+(
+OrderID int Primary Key,
+PrescriptionID int References Prescription(PrescriptionID),
+DateStart date,
+DateFinish date,
+Price decimal(4,2),
+OrderStatus  varchar(15)
+);
+
+Create Table PrescriptionDetail
+(
+PrescriptionDetailID int Primary Key,
+PrescriptionID int References Prescription(PrescriptionID),
+NameMedicine varchar(50),
+MethodOfUse varchar (50),
+Dose varchar (25)
+);
+Create Table Storage
+(
+StorageID int Primary Key,
+Quantity int,
+CriticalRate int,
+
+);
+
+Create Table Ingredient
+(
+IngredientID int Primary Key,
+StorageID int References Storage (StorageID),
+Name varchar(50),
+Form varchar(15),
+Price Decimal (4,2)
+);
+
+Create Table ReadyMedicine
+(
+ReadyMedicineID int Primary Key,
+StorageID int References Storage (StorageID),
+PrescriptionID int References Prescription(PrescriptionID),
+Name varchar(50),
+Form varchar (25),
+Price Decimal(4,2)
+);
+
+Create table ManufacturedMedicine
+(
+ManufacturedMedicineID int Primary Key,
+PrescriptionDetailID int References PrescriptionDetail (PrescriptionDetailID),
+StorageID int References Storage (StorageID),
+Name varchar(50),
+Form varchar(25),
+Price decimal(4,2)
+);
+Create Table Technology
+(
+TechnologyID int Primary Key,
+ManufacturedMedicineID int References ManufacturedMedicine (ManufacturedMedicineID),
+PrepationMethod varchar(100),
+PreparationTime varchar (15)
+); 
+Create Table Composition
+(
+CompositionID int Primary  Key,
+ManufacturedMedicineID int References ManufacturedMedicine (ManufacturedMedicineID), 
+IngredientID int References Ingredient ( IngredientID),
+QuantityMg  int
+
+);
+
+
+
+Select*from Customer
+insert into Customer
+values (123,'Ivan','Ivanov','12/5/1980','20-56 Robinson',514679076);
+insert into Customer
+values (124,'Danil','Petrov','11/23/1999','6 Kent',6135674321);
+insert into Customer
+values (125,'Jhon','Redik','4/30/1989','2 Lees',5147896540);
+ 
+ Select*from Prescription
+insert into Prescription
+values (111,123,'Dr.Mark Piterson','Migraine');
+insert into Prescription
+values (112,124,'Dr.Eva Rewat','Otite');
+insert into Prescription
+values (113,125,'Dr.Antonio Banderes','Conjunctivitis');
+
+Select*from Orders
+insert into Orders
+values (222,111,'10/20/2018','10/20/2018' ,40,'Finished');
+insert into Orders
+values (333,112,'5/20/2018','5/20/2018' ,15,'Finished');
+insert into Orders
+values (444,113,'11/10/2018','11/10/2018' ,78,'Finished');
+
+Select*from PrescriptionDetail
+insert into PrescriptionDetail
+values (111,111,'Codein', ' 1 tablet by mouth every 6 hours', '650 mg');
+insert into PrescriptionDetail
+values (222,112,'Amoxicilin', ' 1 tablet by mouth every 4 hours 10 days', '250 mg');
+insert into PrescriptionDetail
+values (333,113,'Tetraciclin', ' 2 tablet  every 3 hours 14 days', '500 mg');
+
+Select*from Storage
+insert into Storage
+values (001,60,10);
+insert into Storage
+values (002,10,3);
+insert into Storage
+values (003,150,10);
+insert into Storage
+values (004,300,10);
+insert into Storage
+values (005,12,6);
+Insert into Storage
+Values (006,25,8);
+
+Select *from Ingredient
+insert into Ingredient
+values (276,001,'Polipropilen Chlorid','Liquid',12);
+insert into Ingredient
+values (279,002,' Magnia Sulfat','Powder',7);
+insert into Ingredient
+values (288,003,' Mixitropinat','Powder',20);
+
+Select*from ReadyMedicine
+insert into ReadyMedicine
+values (345,001,111,'Codein','Tablets', 40);
+insert into ReadyMedicine
+values (578,002,112,'Amoxicilin','Tablets', 35);
+insert into ReadyMedicine
+values (749,003,113,'Analgin','Tablets', 60);
+
+Select*from ManufacturedMedicine
+insert ManufacturedMedicine
+values (9678,111,001,'Tetraciclin','Tablets',40);
+insert ManufacturedMedicine
+values (9564, 222,002,'Nocodin','Tablets', 15);
+insert ManufacturedMedicine
+values (9084,333,003,'Ponadol', 'Powder',23);
+  
+  Select *from Technology
+insert Technology
+values (178,9564,'Mix Magnia Sulfat with Denat liquid',15);
+insert Technology
+values (214,9084,'Mix Pand Sulfat with Retinol',10);
+insert Technology
+values (139,9678,' Mix Mixitropinat with Polipropilen  Chlorid',20);
+
+Select*from Composition
+insert Composition
+values (897,9678,276,20);
+insert Composition
+values (987,9564,279,40);
+insert Composition
+values (365,9084,288,10);
